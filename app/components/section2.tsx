@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Popup from "./popup";
 
 const MILESTONES = [200_000, 500_000, 1_000_000, 2_000_000, 5_000_000];
 
@@ -22,6 +23,7 @@ const getProgressPercent = (score: number): number => {
 const Section2 = () => {
   const [currentScore, setCurrentScore] = useState(1_000_000);
   const [checkedInDays, setCheckedInDays] = useState<number[]>([1, 2]);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     // TODO: thay bằng URL API thực tế
@@ -47,6 +49,7 @@ const Section2 = () => {
   const progressPercent = getProgressPercent(currentScore);
 
   return (
+    <>
     <section className="relative w-full aspect-640/1196 md:aspect-1920/1080 bg-cover bg-center bg-no-repeat 
     bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section2_pc-bg.jpg')] flex flex-col items-center">
         <img src="/images/section2_title.png" alt="" className="mt-[1%] w-[52.7%] object-contain" />
@@ -113,7 +116,7 @@ const Section2 = () => {
                 />
             </div>
             </div>
-            <img src="/images/section2_btn-rewards.png" alt="" className="w-[85%] object-contain" />
+            <img src="/images/section2_btn-rewards.png" alt="" className="w-[85%] object-contain cursor-pointer" onClick={() => setShowPopup(true)} />
         </div>
         <div className="absolute bottom-[1%] right-[10%] w-[42.7%] aspect-820/898 flex flex-col items-center justify-between">
             <div className="relative w-[70%] aspect-573/101 bg-cover bg-center bg-no-repeat 
@@ -162,6 +165,47 @@ const Section2 = () => {
             </div>
         </div>
     </section>
+    {showPopup && (
+      <Popup
+        title="Danh sách phần thưởng"
+        content={
+          <div className="w-[85%] mt-[3%] flex flex-col items-center text-[#2b2d5e] text-[0.9vw]">
+            <p className="font-bold italic text-[1.1vw]">Tam Anh Xuất Thế</p>
+            <p className="font-bold italic text-[1.1vw]">Quần Hùng Tranh Bá</p>
+            <p className="mt-[1.5%] text-center leading-snug">
+              Mỗi mốc quà được mở khoá, toàn bộ Server sẽ nhận được<br />
+              phần thưởng thông qua hòm thư ingame
+            </p>
+            <p className="italic text-[#3b82f6] font-bold mt-[0.5%]">Danh sách phần thưởng</p>
+
+            <table className="w-full mt-[2%] border-collapse border border-[#2b2d5e]/30 text-[0.85vw]">
+              <thead>
+                <tr className="bg-[#d4b8e0]/60">
+                  <th className="border border-[#2b2d5e]/30 py-[0.8%] w-[35%] font-bold">Sát thương</th>
+                  <th className="border border-[#2b2d5e]/30 py-[0.8%] font-bold">Phần thưởng</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { score: "200.000", rewards: ["Xu Triệu Hồi Cao Cấp x5", "Xu Triệu Hồi Phe x1", "KNB x2000"] },
+                  { score: "500.000", rewards: ["Xu Triệu Hồi Cao Cấp x5", "Xu Triệu Hồi Phe x1", "KNB x2000"] },
+                  { score: "500.000", rewards: ["Xu Triệu Hồi Cao Cấp x5", "Xu Triệu Hồi Phe x1", "KNB x2000"] },
+                ].map((row, i) => (
+                  <tr key={i} className={i % 2 === 0 ? "" : "bg-[#d4b8e0]/40"}>
+                    <td className="border border-[#2b2d5e]/30 py-[1%] text-center font-bold">{row.score}</td>
+                    <td className="border border-[#2b2d5e]/30 py-[1%] pl-[5%]">
+                      {row.rewards.map((r, j) => <div key={j}>- {r}</div>)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        }
+        onClose={() => setShowPopup(false)}
+      />
+    )}
+    </>
   );
 };
 
