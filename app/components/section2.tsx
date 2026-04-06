@@ -118,7 +118,7 @@ const Section2 = () => {
         <div className="absolute bottom-[1%] right-[10%] w-[42.7%] aspect-820/898 flex flex-col items-center justify-between">
             <div className="relative w-[70%] aspect-573/101 bg-cover bg-center bg-no-repeat 
             bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section2_fr-title.png')] flex items-center justify-center">
-                <p className="text-center w-[80%] font-bold inline-block">Xin chào, Chủ Công đang có <span className="text-red-500">XXX</span> Lượt Khiếu Chiến Lữ Bố</p>
+                <p className="text-center w-[80%] text-[1.2vw] font-bold inline-block">Xin chào, Chủ Công đang có <span className="text-red-500">XXX</span> Lượt Khiếu Chiến Lữ Bố</p>
             </div>
             <div className="relative w-full aspect-820/674 bg-cover bg-center bg-no-repeat
             bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section2_fr-rewards.png')] flex items-center justify-center">
