@@ -69,7 +69,16 @@ const Hero = () => {
         />
       )}
 
-      <div className="w-full"></div>
+      <div className="w-[33%] aspect-3/1 absolute top-[60%] right-[12%] flex items-center justify-center">
+        <img src="/images/navigation_btn-code.png" alt="" className="h-full object-contain" />
+        <div className="-ml-1 w-full h-full bg-cover bg-center bg-no-repeat aspect-474/188 bg-[url('/images/navigation_bg.png')] flex gap-[5%] items-center justify-center">
+          <img src="/images/navigation_btn-play.png" alt="" className="h-3/4 object-contain" />
+          <div className="flex flex-col h-3/4 items-center justify-between">
+            <img src="/images/floating_btn-gg.png" alt="" className="object-contain" />
+            <img src="/images/floating_btn-app-store.png" alt="" className="object-contain" />
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
