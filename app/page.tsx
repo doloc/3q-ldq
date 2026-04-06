@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Hero from "./components/hero";
 import Floating from "./components/floating";
 import Section2 from "./components/section2";
+import Section3 from "./components/section3";
 
 export default function Home() {
   const topRef = useRef<HTMLDivElement>(null);
@@ -17,6 +18,7 @@ export default function Home() {
     <div ref={topRef} className="w-full h-full">
       <Hero />
       <Section2 />
+      <Section3 />
       <Floating onScrollToTop={scrollToTop} />
       {/* <Header />
       <Hero />
