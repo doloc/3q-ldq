@@ -9,8 +9,8 @@
 }
 
 @font-face {
-  font-family: "UTM Talling";
-  src: url("/fonts/UTMTallingBol.ttf") format("truetype");
+  font-family: "UTM TallingBold";
+  src: url("/fonts/UTMTallingBold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -39,30 +39,65 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "UTM Talling", Arial, Helvetica, sans-serif;
+  overflow-anchor: none;
 }
 
-.img-btn {
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-  background: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  font-size: 0;
-  line-height: 0;
-  transition: transform 80ms ease, filter 80ms ease, opacity 80ms ease;
+/* ── Keyframe animations ── */
+@keyframes anim-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes anim-float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes anim-pulse-glow {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 4px rgba(0,255,243,0.25)); }
+  50%       { filter: brightness(1.15) drop-shadow(0 0 14px rgba(0,255,243,0.75)); }
+}
+@keyframes anim-btn-pulse {
+  0%, 100% { transform: scale(1);    filter: brightness(1); }
+  50%       { transform: scale(1.04); filter: brightness(1.18); }
+}
+@keyframes anim-vs-pulse {
+  0%, 100% { transform: scale(1)    drop-shadow(0 0 6px rgba(255,200,0,0.4)); filter: drop-shadow(0 0 6px rgba(255,200,0,0.4)); }
+  50%       { transform: scale(1.08); filter: drop-shadow(0 0 18px rgba(255,200,0,0.9)); }
+}
+@keyframes anim-spin-ring {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.img-btn img {
-  display: block;
-  pointer-events: none;
-}
+.anim-float       { animation: anim-float      3s ease-in-out infinite; }
+.anim-float-slow  { animation: anim-float-slow 4s ease-in-out infinite; }
+.anim-pulse-glow  { animation: anim-pulse-glow 2.5s ease-in-out infinite; }
+.anim-btn-pulse   { animation: anim-btn-pulse  2.8s ease-in-out infinite; }
+.anim-vs-pulse    { animation: anim-vs-pulse   1.8s ease-in-out infinite; }
 
-.img-btn:hover    { filter: brightness(1.1); }
-.img-btn:active   { transform: scale(0.93); filter: brightness(0.88); opacity: 0.9; }
-.img-btn:focus-visible {
-  outline: 2px solid rgba(255,255,255,0.6);
-  outline-offset: 2px;
-  border-radius: 4px;
+@layer components {
+  .img-btn {
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    background: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 0;
+    line-height: 0;
+    transition: transform 80ms ease, filter 80ms ease, opacity 80ms ease;
+  }
+
+  .img-btn img {
+    display: block;
+    pointer-events: none;
+  }
+
+  .img-btn:hover    { filter: brightness(1.1); }
+  .img-btn:active   { transform: scale(0.93); filter: brightness(0.88); opacity: 0.9; }
+  .img-btn:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.6);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }

@@ -23,12 +23,12 @@ const Hero = () => {
         transition={{ duration: 0.5 }}
       >
         <img
-          src="/images/banner-light.webp"
+          src="/images/pc-hero-bg-fallback.webp"
           alt=""
           className="hidden md:block w-full h-full object-cover"
         />
         <img
-          src="/images/mb-banner-light.webp"
+          src="/images/mb-hero-bg-fallback.webp"
           alt=""
           className="md:hidden w-full h-full object-cover"
         />
@@ -38,7 +38,7 @@ const Hero = () => {
       {isClient && !isMobile && (
         <motion.video
           className="absolute top-0 left-0 w-full aspect-1920/1080 object-cover"
-          src="/videos/pc-hero-vid.mp4"
+          src="/videos/pc-hero-vid.webm"
           autoPlay
           loop
           muted
@@ -55,7 +55,7 @@ const Hero = () => {
       {isClient && isMobile && (
         <motion.video
           className="absolute top-0 left-0 w-full aspect-640/1136 object-cover"
-          src="/videos/mb-hero-vid.mp4"
+          src="/videos/mb-hero-vid.webm"
           autoPlay
           loop
           muted
@@ -70,13 +70,13 @@ const Hero = () => {
       )}
 
       <div className="hidden md:flex w-[33%] aspect-3/1 absolute top-[60%] right-[12%] items-center justify-center">
-        <img src="/images/navigation_btn-code.png" alt="" className="h-full object-contain img-btn" />
-        <div className="-ml-1 mt-1 w-full h-full bg-cover bg-center bg-no-repeat aspect-474/188 bg-[url('/images/navigation_bg.png')] 
+        <img src="/images/navigation_btn-code.webp" alt="" className="h-full object-contain img-btn" />
+        <div className="-ml-1 mt-1 w-full h-full bg-cover bg-center bg-no-repeat aspect-474/188 bg-[url('/images/navigation_bg.webp')] 
           flex gap-[3%] items-center justify-center">
-          <img src="/images/navigation_btn-play.png" alt="" className="w-[44.72%] object-contain img-btn" />
+          <img src="/images/navigation_btn-play.webp" alt="" className="w-[44.72%] object-contain img-btn" />
           <div className="flex flex-col w-[40.5%] h-full py-[6%] items-center justify-between">
-            <img src="/images/floating_btn-gg.png" alt="" className="w-full object-contain img-btn" />
-            <img src="/images/floating_btn-app-store.png" alt="" className="w-full object-contain img-btn" />
+            <img src="/images/floating_btn-gg.webp" alt="" className="w-full object-contain img-btn" />
+            <img src="/images/floating_btn-app-store.webp" alt="" className="w-full object-contain img-btn" />
           </div>
         </div>
       </div>
