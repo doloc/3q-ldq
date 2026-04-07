@@ -104,22 +104,23 @@ const Section3 = () => {
     };
 
     return (
-        <section className="relative w-full aspect-640/1196 md:aspect-1920/1080 bg-cover bg-center bg-no-repeat 
-    bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section3_pc-bg.jpg')] flex flex-col items-center">
-            <img src="/images/section3_title.png" alt="" className="mt-[2%] w-[57.23%] object-contain" />
-            <div className="relative w-[31.25%] aspect-600/106 bg-cover bg-center bg-no-repeat 
-            bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section3_text.png')] flex items-center justify-center">
-                <p className="text-center w-[80%] text-[1.2vw] font-bold inline-block">Xin chào, Chủ Công đang có <span className="text-red-500">XXX</span> Lượt Khiếu Chiến Lữ Bố</p>
+        <section className="relative w-full aspect-750/1334 md:aspect-1920/1080 bg-cover bg-center bg-no-repeat 
+    bg-[url('/images/section3_mb-bg.jpg')] md:bg-[url('/images/section3_pc-bg.jpg')] flex flex-col items-center">
+            <img src="/images/section3_title.png" alt="" className="mt-[2%] md:mt-[2%] w-[89%] md:w-[57.23%] object-contain" />
+            <div className="relative mt-[2.5%] md:mt-0 w-[63.47%] md:w-[31.25%] aspect-600/106 bg-cover bg-center bg-no-repeat 
+            bg-[url('/images/section3_text.png')] flex items-center justify-center">
+                <p className="text-center w-[80%] text-[2.4vw] md:text-[1.2vw] font-bold inline-block">Xin chào, Chủ Công đang có <span className="text-red-500">XXX</span> Lượt Khiếu Chiến Lữ Bố</p>
             </div>
-            <div className="mt-[1%] w-full flex gap-[2%] justify-center">
-                <img src="/images/section3_btn-history.png" alt="" className="w-[14%] object-contain" />
-                <img src="/images/section3_btn-rule.png" alt="" className="w-[14%] object-contain" />
+            <div className="z-50 mt-[3%] md:mt-[1%] w-[65%] md:w-full flex gap-[2%] justify-center">
+                <img src="/images/section3_btn-history.png" alt="" className="w-[46.8%] md:w-[14%] object-contain img-btn" />
+                <img src="/images/section3_btn-rule.png" alt="" className="w-[46.8%] md:w-[14%] object-contain img-btn" />
             </div>
-            <img src="/images/section3_character.png" alt="" className="absolute right-0 bottom-0 w-[60.5%] object-contain" />
-            <img src="/images/section3_vs.png" alt="" className="absolute bottom-[30%] w-[14%] object-contain" />
+            <img src="/images/section3_mb-main-character.png" alt="" className="md:hidden absolute right-0 bottom-[11%] w-[77.6%] object-contain" />
+            <img src="/images/section3_pc-main-character.png" alt="" className="hidden md:block absolute right-0 bottom-0 w-[60.5%] object-contain" />
+            <img src="/images/section3_vs.png" alt="" className="absolute bottom-[35%] md:bottom-[30%] w-[28.9%] md:w-[14%] object-contain" />
 
             {/* Diamond roulette area */}
-            <div className="absolute bottom-[6%] left-[2%] w-[39.21%] aspect-753/728">
+            <div className="absolute bottom-[40%] md:bottom-[6%] left-[0%] w-[62.53%] md:w-[39.21%] aspect-753/728">
                 <div className="relative w-full h-full">
                     {ITEMS.map((item, i) => {
                         const isHighlighted = highlightIdx === i;
@@ -169,7 +170,7 @@ const Section3 = () => {
             <button
                 onClick={handleSpin}
                 disabled={spinning}
-                className="absolute bottom-[5%] w-[32.5%] cursor-pointer disabled:cursor-not-allowed"
+                className="absolute bottom-[9%] md:bottom-[5%] w-[63%] md:w-[32.5%] cursor-pointer disabled:cursor-not-allowed img-btn"
             >
                 <img
                     src="/images/section3_cta.png"

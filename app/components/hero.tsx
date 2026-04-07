@@ -69,13 +69,14 @@ const Hero = () => {
         />
       )}
 
-      <div className="w-[33%] aspect-3/1 absolute top-[60%] right-[12%] flex items-center justify-center">
-        <img src="/images/navigation_btn-code.png" alt="" className="h-full object-contain" />
-        <div className="-ml-1 w-full h-full bg-cover bg-center bg-no-repeat aspect-474/188 bg-[url('/images/navigation_bg.png')] flex gap-[5%] items-center justify-center">
-          <img src="/images/navigation_btn-play.png" alt="" className="h-3/4 object-contain" />
-          <div className="flex flex-col h-3/4 items-center justify-between">
-            <img src="/images/floating_btn-gg.png" alt="" className="object-contain" />
-            <img src="/images/floating_btn-app-store.png" alt="" className="object-contain" />
+      <div className="hidden md:flex w-[33%] aspect-3/1 absolute top-[60%] right-[12%] items-center justify-center">
+        <img src="/images/navigation_btn-code.png" alt="" className="h-full object-contain img-btn" />
+        <div className="-ml-1 mt-1 w-full h-full bg-cover bg-center bg-no-repeat aspect-474/188 bg-[url('/images/navigation_bg.png')] 
+          flex gap-[3%] items-center justify-center">
+          <img src="/images/navigation_btn-play.png" alt="" className="w-[44.72%] object-contain img-btn" />
+          <div className="flex flex-col w-[40.5%] h-full py-[6%] items-center justify-between">
+            <img src="/images/floating_btn-gg.png" alt="" className="w-full object-contain img-btn" />
+            <img src="/images/floating_btn-app-store.png" alt="" className="w-full object-contain img-btn" />
           </div>
         </div>
       </div>

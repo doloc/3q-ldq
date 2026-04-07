@@ -50,10 +50,129 @@ const Section2 = () => {
 
   return (
     <>
-    <section className="relative w-full aspect-640/1196 md:aspect-1920/1080 bg-cover bg-center bg-no-repeat 
-    bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section2_pc-bg.jpg')] flex flex-col items-center">
-        <img src="/images/section2_title.png" alt="" className="mt-[1%] w-[52.7%] object-contain" />
-        <div className="absolute bottom-[1%] left-[12%] w-[32.7%] aspect-628/756 flex flex-col gap-[5%]">
+    <section className="relative w-full aspect-750/1334 md:aspect-1920/1080 bg-cover bg-center bg-no-repeat 
+    bg-[url('/images/section2_mb-bg.jpg')] md:bg-[url('/images/section2_pc-bg.jpg')] flex flex-col items-center">
+        <img src="/images/section2_title.png" alt="" className="mt-[3%] md:mt-[1%] w-[77%] md:w-[52.7%] object-contain" />
+        <div className="md:hidden mt-[2%] relative w-[63%] aspect-573/101 bg-cover bg-center bg-no-repeat 
+            bg-[url('/images/section2_fr-title.png')] flex items-center justify-center">
+            <p className="text-center w-[80%] text-[2.4vw] md:text-[1.2vw] font-bold inline-block">Xin chào, Chủ Công đang có <span className="text-red-500">XXX</span> Lượt Khiếu Chiến Lữ Bố</p>
+        </div>
+
+        {/* Mobile version */}
+        <div className="md:hidden mt-[2%] relative w-[90.13%] aspect-820/674 bg-cover bg-center bg-no-repeat
+          bg-[url('/images/section2_fr-rewards.png')] flex items-center justify-center">
+          <div className="grid grid-cols-4 gap-[2%] w-[90%] h-[85%]">
+            {Array.from({ length: 12 }, (_, i) => {
+              const day = i + 1;
+              const checkedIn = checkedInDays.includes(day);
+              return (
+                <div key={day} className="relative flex flex-col items-center">
+                  {/* Box background */}
+                  <div
+                    className="relative w-full aspect-square bg-contain bg-center bg-no-repeat flex items-center justify-center"
+                    style={{ backgroundImage: "url('/images/section2_fr-box.png')" }}
+                  >
+                    {/* Overlay nếu đã điểm danh */}
+                    {checkedIn && (
+                      <div className="absolute inset-0 rounded-md bg-black/30" />
+                    )}
+                    {/* Số thứ tự */}
+                    <span className="relative z-10 text-[#1a2a5e] font-bold text-[clamp(12px,2.5vw,32px)] leading-none">
+                      {day}
+                    </span>
+                  </div>
+                  {/* Label điểm danh */}
+                  {checkedIn && (
+                    <img
+                      src="/images/lable-check-in.png"
+                      alt="Đã điểm danh"
+                      className="absolute bottom-[15%] translate-y-[30%] w-[110%] object-contain z-20"
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        {/* Mobile version */}
+        <div className="md:hidden mt-[5%] w-[89%] flex items-center justify-between">
+          <img src="/images/section2_btn-get-tickets.png" alt="" className="w-[31.1%] object-contain img-btn" />
+          <img src="/images/section2_btn-history.png" alt="" className="w-[31.1%] object-contain img-btn" />
+          <img src="/images/section2_btn-checkin.png" alt="" className="w-[31.1%] object-contain img-btn" />
+        </div>
+        {/* Mobile version */}
+        <div className="md:hidden mt-[5%] w-[94%] grid grid-cols-2">
+          <div className="col-span-1 aspect-321/358 flex flex-col gap-[5%]">
+            <div className="relative w-full h-[96%]">
+            {/* Milestone images */}
+            <div className="absolute w-full left-[14%] right-0 top-[2%] bottom-[2%] flex flex-col justify-between">
+                {[
+                { src: "/images/section2_milestone-200k.png", value: 200_000, width: "72.45%" },
+                { src: "/images/section2_milestone-500k.png", value: 500_000, width: "72.45%" },
+                { src: "/images/section2_milestone-1m.png",   value: 1_000_000, width: "72.45%" },
+                { src: "/images/section2_milestone-2m.png",   value: 2_000_000, width: "72.45%" },
+                { src: "/images/section2_milestone-5m.png",   value: 5_000_000, width: "85.67%" },
+                ].map(({ src, value, width }) => {
+                const unlocked = currentScore >= value;
+                return (
+                    <div key={value} className="relative inline-block" style={{ width }}>
+                    <img src={src} alt="" className="w-full object-contain" />
+                    {!unlocked && (
+                        <div
+                        className="absolute inset-0 rounded-sm"
+                        style={{ background: "rgba(10, 15, 50, 0.55)" }}
+                        />
+                    )}
+                    </div>
+                );
+                })}
+            </div>
+
+            {/* Progress bar */}
+            <div className="absolute left-0 top-[2%] bottom-[2%] w-[15%] flex justify-center">
+                <div
+                className="absolute inset-y-0 rounded-sm"
+                style={{ width: "28%", background: "#13153b", border: "1px solid #00fff3" }}
+                />
+                <div
+                className="absolute top-0 rounded-sm"
+                style={{ width: "28%", height: `${progressPercent}%`, background: "#00fff3" }}
+                >
+                <div
+                    className="absolute rounded-sm"
+                    style={{
+                    inset: "0 12%",
+                    background: "linear-gradient(180deg, #ffffff 0%, #ffff21 100%)",
+                    }}
+                >
+                    <div
+                    className="absolute rounded-sm"
+                    style={{
+                        inset: "0 20%",
+                        background: "linear-gradient(180deg, #ffeeaf 0%, #ffbf11 100%)",
+                    }}
+                    />
+                </div>
+                </div>
+                <img
+                src="/images/section2_icon-progress.png"
+                alt=""
+                className="absolute object-contain w-[60%]"
+                style={{
+                    top: `${progressPercent}%`,
+                    transform: "translateY(-50%)",
+                }}
+                />
+            </div>
+            </div>
+          </div>
+          <div className="col-span-1 aspect-321/358 flex flex-col items-center flex-col-reverse">
+            <img src="/images/section2_btn-rewards.png" alt="" className="w-[85%] object-contain cursor-pointer img-btn" onClick={() => setShowPopup(true)} />
+          </div>
+        </div>
+
+        {/* PC version */}
+        <div className="hidden md:flex absolute bottom-[1%] left-[12%] w-[32.7%] aspect-628/756 flex-col gap-[5%]">
             <div className="relative w-full h-[83%]">
             {/* Milestone images */}
             <div className="absolute w-full left-[14%] right-0 top-[2%] bottom-[2%] flex flex-col justify-between">
@@ -116,15 +235,15 @@ const Section2 = () => {
                 />
             </div>
             </div>
-            <img src="/images/section2_btn-rewards.png" alt="" className="w-[85%] object-contain cursor-pointer" onClick={() => setShowPopup(true)} />
+            <img src="/images/section2_btn-rewards.png" alt="" className="w-[85%] object-contain cursor-pointer img-btn" onClick={() => setShowPopup(true)} />
         </div>
-        <div className="absolute bottom-[1%] right-[10%] w-[42.7%] aspect-820/898 flex flex-col items-center justify-between">
+        <div className="hidden md:flex absolute bottom-[1%] right-[10%] w-[42.7%] aspect-820/898 flex-col items-center justify-between">
             <div className="relative w-[70%] aspect-573/101 bg-cover bg-center bg-no-repeat 
-            bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section2_fr-title.png')] flex items-center justify-center">
+            bg-[url('/images/section2_fr-title.png')] flex items-center justify-center">
                 <p className="text-center w-[80%] text-[1.2vw] font-bold inline-block">Xin chào, Chủ Công đang có <span className="text-red-500">XXX</span> Lượt Khiếu Chiến Lữ Bố</p>
             </div>
             <div className="relative w-full aspect-820/674 bg-cover bg-center bg-no-repeat
-            bg-[url('/images/mb-news-event-bg.webp')] md:bg-[url('/images/section2_fr-rewards.png')] flex items-center justify-center">
+            bg-[url('/images/section2_fr-rewards.png')] flex items-center justify-center">
                 <div className="grid grid-cols-4 gap-[2%] w-[90%] h-[85%]">
                   {Array.from({ length: 12 }, (_, i) => {
                     const day = i + 1;
@@ -159,9 +278,9 @@ const Section2 = () => {
                 </div>
             </div>
             <div className="w-full flex items-center justify-between">
-                <img src="/images/section2_btn-get-tickets.png" alt="" className="w-[31.1%] object-contain" />
-                <img src="/images/section2_btn-history.png" alt="" className="w-[31.1%] object-contain" />
-                <img src="/images/section2_btn-checkin.png" alt="" className="w-[31.1%] object-contain" />
+                <img src="/images/section2_btn-get-tickets.png" alt="" className="w-[31.1%] object-contain img-btn" />
+                <img src="/images/section2_btn-history.png" alt="" className="w-[31.1%] object-contain img-btn" />
+                <img src="/images/section2_btn-checkin.png" alt="" className="w-[31.1%] object-contain img-btn" />
             </div>
         </div>
     </section>
