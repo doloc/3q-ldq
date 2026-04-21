@@ -1,6 +1,9 @@
 "use client";
 import { useState, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
+import Section3ModalRule from "./section3-modal-rule";
+import ModalHistoryDamage from "./section3-modal-history-damage";
+import Section3ModalFight from "./section3-modal-fight";
 
 const ITEMS = [
     { id: 0, src: "/images/section3_char-3.webp", label: "Char 3" },   // 12h (top)
@@ -23,6 +26,8 @@ const Section3 = () => {
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
     const [showPopup, setShowPopup] = useState(false);
     const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
+    const [showModalRule, setShowModalRule] = useState(false);
+    const [showModalHistoryDamage, setShowModalHistoryDamage] = useState(false);
 
     const clearAllTimeouts = () => {
         timeoutRefs.current.forEach(clearTimeout);
@@ -123,8 +128,8 @@ const Section3 = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
             >
-                <img src="/images/section3_btn-history.webp" alt="" className="w-[46.8%] md:w-[14%] object-contain img-btn" />
-                <img src="/images/section3_btn-rule.webp" alt="" className="w-[46.8%] md:w-[14%] object-contain img-btn" />
+                <img src="/images/section3_btn-history.webp" alt="" className="w-[46.8%] md:w-[14%] object-contain img-btn" onClick={() => setShowModalHistoryDamage(true)} />
+                <img src="/images/section3_btn-rule.webp" alt="" className="w-[46.8%] md:w-[14%] object-contain img-btn" onClick={() => setShowModalRule(true)} />
             </motion.div>
 
             {/* Main characters — slide in from right */}
@@ -206,9 +211,9 @@ const Section3 = () => {
 
             {/* Popup */}
             {showPopup && selectedIdx !== null && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={closePopup}>
+                selectedIdx === 3 ? <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={closePopup}>
                     <motion.div
-                        className="relative bg-linear-to-b from-[#1a1a3e] to-[#0d0d2b] border-2 border-cyan-400 rounded-2xl p-8 text-center max-w-[400px] w-[90%] shadow-[0_0_40px_rgba(0,255,255,0.3)]"
+                        className="relative bg-linear-to-b from-[#1a1a3e] to-[#0d0d2b] border-2 border-cyan-400 rounded-2xl p-8 text-center max-w-[400px] w-[90%] shadow-[0_0_40px_rgba(0,255,255,0.3)] font-SVN-GilroyBold"
                         onClick={(e) => e.stopPropagation()}
                         initial={{ scale: 0.7, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
@@ -228,7 +233,16 @@ const Section3 = () => {
                             Đóng
                         </button>
                     </motion.div>
-                </div>
+                </div> :
+                <Section3ModalFight idx={selectedIdx} showPopup={showPopup} setShowPopup={setShowPopup} />
+            )}
+
+            {showModalRule && (
+                <Section3ModalRule showPopup={showModalRule} setShowPopup={setShowModalRule} />
+            )}
+
+            {showModalHistoryDamage && (
+                <ModalHistoryDamage showPopup={showModalHistoryDamage} setShowPopup={setShowModalHistoryDamage} />
             )}
         </section>
     );

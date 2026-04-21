@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion, type Easing } from "framer-motion";
 import Popup from "./popup";
+import Modal from "./modal";
+import Section2ModalNhanLuot from "./section2-modal-nhanluot";
+import Section2ModalHistory from "./section2-modal-history";
+import Section2ModalReward from "./section2-modal-reward";
 
 const MILESTONES = [200_000, 500_000, 1_000_000, 2_000_000, 5_000_000];
 
@@ -109,6 +113,8 @@ const Section2 = () => {
   const [currentScore, setCurrentScore] = useState(1_000_000);
   const [checkedInDays, setCheckedInDays] = useState<number[]>([1, 2]);
   const [showPopup, setShowPopup] = useState(false);
+  const [showModalNhanLuot, setShowModalNhanLuot] = useState(false);
+  const [showModalHistory, setShowModalHistory] = useState(false);
 
   useEffect(() => {
     fetch("/api/score").then((res) => res.json()).then((data) => { setCurrentScore(data.score ?? 0); }).catch(() => {});
@@ -142,8 +148,8 @@ const Section2 = () => {
         </div>
         {/* Mobile version */}
         <div className="md:hidden mt-[5%] w-[89%] flex items-center justify-between">
-          <img src="/images/section2_btn-get-tickets.webp" alt="" className="w-[31.1%] object-contain img-btn" />
-          <img src="/images/section2_btn-history.webp" alt="" className="w-[31.1%] object-contain img-btn" />
+          <img src="/images/section2_btn-get-tickets.webp" alt="" className="w-[31.1%] object-contain img-btn" onClick={() => setShowModalNhanLuot(true)} />
+          <img src="/images/section2_btn-history.webp" alt="" className="w-[31.1%] object-contain img-btn" onClick={() => setShowModalHistory(true)} />
           <img src="/images/section2_btn-checkin.webp" alt="" className="w-[31.1%] object-contain img-btn anim-btn-pulse" />
         </div>
         {/* Mobile version */}
@@ -177,17 +183,17 @@ const Section2 = () => {
                 <CheckinGrid checkedInDays={checkedInDays} />
             </div>
             <div className="w-full flex items-center justify-between">
-                <img src="/images/section2_btn-get-tickets.webp" alt="" className="w-[31.1%] object-contain img-btn" />
-                <img src="/images/section2_btn-history.webp" alt="" className="w-[31.1%] object-contain img-btn" />
+                <img src="/images/section2_btn-get-tickets.webp" alt="" className="w-[31.1%] object-contain img-btn" onClick={() => setShowModalNhanLuot(true)} />
+                <img src="/images/section2_btn-history.webp" alt="" className="w-[31.1%] object-contain img-btn" onClick={() => setShowModalHistory(true)} />
                 <img src="/images/section2_btn-checkin.webp" alt="" className="w-[31.1%] object-contain img-btn anim-btn-pulse" />
             </div>
         </div>
     </section>
-    {showPopup && (
+    {/* {showPopup && (
       <Popup
         title="Danh sách phần thưởng"
         content={
-          <div className="w-[85%] mt-[3%] flex flex-col items-center text-[#2b2d5e] text-[0.9vw]">
+          <div className="w-[85%] mt-[3%] flex flex-col items-center text-[#2b2d5e] text-[0.9vw] font-SVN-GilroyBold">
             <p className="italic text-[1.1vw]">Tam Anh Xuất Thế</p>
             <p className="italic text-[1.1vw]">Quần Hùng Tranh Bá</p>
             <p className="mt-[1.5%] text-center leading-snug">
@@ -221,6 +227,17 @@ const Section2 = () => {
         }
         onClose={() => setShowPopup(false)}
       />
+    )} */}
+    {showPopup && (
+      <Section2ModalReward showPopup={showPopup} setShowPopup={setShowPopup} />
+    )}
+
+    {showModalNhanLuot && (
+      <Section2ModalNhanLuot showPopup={showModalNhanLuot} setShowPopup={setShowModalNhanLuot} />
+    )}
+
+    {showModalHistory && (
+      <Section2ModalHistory showPopup={showModalHistory} setShowPopup={setShowModalHistory} />
     )}
     </>
   );

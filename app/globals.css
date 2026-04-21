@@ -16,6 +16,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "SVN-GilroyBold";
+  src: url("/fonts/SVN-GilroyBold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;  
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -26,6 +34,7 @@
   --color-foreground: var(--foreground);
   --font-sans: "UTM Talling", Arial, sans-serif;
   --font-mono: var(--font-geist-mono);
+  --font-SVN-GilroyBold: "SVN-GilroyBold", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,7 +47,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "UTM Talling", Arial, Helvetica, sans-serif;
+  font-family: "UTM Talling", "SVN-GilroyBold", Arial, Helvetica, sans-serif;
   overflow-anchor: none;
 }
 
@@ -75,6 +84,21 @@ body {
 .anim-vs-pulse    { animation: anim-vs-pulse   1.8s ease-in-out infinite; }
 
 @layer components {
+  .scrollbar-modal {
+    scrollbar-width: thin;
+    scrollbar-color: #C8A8E8 transparent;
+  }
+  .scrollbar-modal::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-modal::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-modal::-webkit-scrollbar-thumb {
+    background-color: #C8A8E8;
+    border-radius: 999px;
+  }
+
   .img-btn {
     display: inline-block;
     cursor: pointer;
